@@ -31,7 +31,7 @@ class Storage {
   async get() {
     return new Promise(async (resolve) => {
       const storage = await this._getRootStorage();
-      storage.local.get(this.key, (obj) => {
+      storage.sync.get(this.key, (obj) => {
         resolve(obj[this.key]);
       });
     });
@@ -39,7 +39,7 @@ class Storage {
   async set(value) {
     return new Promise(async (resolve) => {
       const storage = await this._getRootStorage();
-      storage.local.set({ [this.key]: value }, () => {
+      storage.sync.set({ [this.key]: value }, () => {
         resolve();
       });
     });
